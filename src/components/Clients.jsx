@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, createContext } from "react";
+import Link from "next/link";
+import { useState, createContext, useContext } from "react";
 
-export const Context = createContext({ user: {} });
+const Context = createContext({ user: {} });
 
 export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
@@ -16,9 +17,17 @@ export const LogOutBtn = () => {
     alert("Logged Out");
   };
 
+  const { user } = useContext(Context);
+
   return (
-    <button className="btn" onClick={logOutHandler}>
-      LogOut
-    </button>
+    <>
+      {user.id ? (
+        <button className="btn" onClick={logOutHandler}>
+          LogOut
+        </button>
+      ) : (
+        <Link href={"/login"}>Login</Link>
+      )}
+    </>
   );
 };

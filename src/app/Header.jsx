@@ -11,7 +11,7 @@ const header = () => {
       <article>
         <Link href={"/"}>Home</Link>
         <Link href={"/about"}>About</Link>
-        {/* <Link href={"/login"}>Login</Link> */}
+
         <LogOutBtn />
       </article>
     </div>
