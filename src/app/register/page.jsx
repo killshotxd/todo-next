@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 
@@ -6,6 +8,7 @@ const page = () => {
     <div className="login">
       <section>
         <form>
+          <input type="text" placeholder="Enter your Name" />
           <input type="email" placeholder="Enter your Email" />
           <input type="password" placeholder="Enter your Password" />
 
