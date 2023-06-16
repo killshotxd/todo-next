@@ -1,5 +1,9 @@
 import { User } from "../../../models/user";
-import { connectDb, cookieSetter } from "../../../utils/features";
+import {
+  connectDb,
+  cookieSetter,
+  generateToken,
+} from "../../../utils/features";
 
 const { asyncError, errorHandler } = require("../../../middlewares/error");
 
@@ -11,7 +15,7 @@ const handler = asyncError(async (req, res) => {
 
   await connectDb();
 
-  const user = await User.findOne({ email });
+  let user = await User.findOne({ email });
 
   if (user)
     return errorHandler(
@@ -20,13 +24,13 @@ const handler = asyncError(async (req, res) => {
       "User is already registered with this email!"
     );
 
-  await User.create({
+  user = await User.create({
     nam,
     email,
     password,
   });
 
-  const token = "Sdasdas";
+  const token = generateToken(user._id);
 
   cookieSetter(res, token, true);
 

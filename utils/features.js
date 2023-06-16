@@ -1,6 +1,6 @@
 import { serialize } from "cookie";
 import mongoose from "mongoose";
-
+import { Jwt } from "jsonwebtoken";
 export const connectDb = async () => {
   const { connection } = await mongoose.connect(process.env.MONGO_URI, {
     dbName: "NextTodo",
@@ -18,4 +18,8 @@ export const cookieSetter = (res, set) => {
       maxAge: set ? 10 * 24 * 60 * 60 * 1000 : 0,
     })
   );
+};
+
+export const generateToken = (_id) => {
+  return jwt.sign({ _id }, process.env.JWT_SECRET);
 };
