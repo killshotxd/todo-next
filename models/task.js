@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
     default: false,
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: "User",
   },
@@ -24,5 +24,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-mongoose.model = {};
+mongoose.models = {};
+
 export const Task = mongoose.model("Task", schema);
